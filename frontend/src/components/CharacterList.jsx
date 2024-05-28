@@ -5,14 +5,10 @@ import Footer from './Footer';
 
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    // axios.get('https://swapi.dev/api/people')
     axios.get('characters.json')
       .then(response => {
-        console.log('response.data characters:', response.data);
-        setCount(response.data.count);
         setCharacters(response.data.results);
       })
       .catch(error => {
@@ -23,7 +19,7 @@ function CharacterList() {
   return (
     <React.Fragment>
     <div style={{ backgroundImage: "url('/images/texture-background.png')", padding:"40px"}}>
-      <h2>Star Wars Characters ({count})</h2>
+      <h2>Star Wars Characters</h2>
       <ul>
         {characters.map(character => (
           <li key={character.id}>

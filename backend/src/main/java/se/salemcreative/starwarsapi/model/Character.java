@@ -1,16 +1,18 @@
-package se.salemcreative.starwars.model;
+package se.salemcreative.starwarsapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import se.salemcreative.starwars.exception.StarWarsApiUserException;
+import se.salemcreative.starwarsapi.exception.StarWarsApiUserException;
 
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -23,6 +25,25 @@ import java.util.concurrent.atomic.AtomicLong;
 @Entity
 @Table(name = "`Character`")
 @Slf4j
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "name",
+        "height",
+        "mass",
+        "hair_color",
+        "skin_color",
+        "eye_color",
+        "birth_year",
+        "gender",
+        "homeworld",
+        "films",
+        "species",
+        "vehicles",
+        "starships",
+        "created",
+        "edited",
+        "url"
+})
 public class Character {
 
     @Id
@@ -30,7 +51,48 @@ public class Character {
     private Long id;
 
     @Column(unique = true, nullable = false, length = 200)
+    @JsonProperty("name")
     private String name;
+
+    @JsonProperty("height")
+    private String height;
+
+    @JsonProperty("mass")
+    private String mass;
+
+    @JsonProperty("hair_color")
+    private String hairColor;
+
+    @JsonProperty("skin_color")
+    private String skinColor;
+
+    @JsonProperty("eye_color")
+    private String eyeColor;
+
+    @JsonProperty("birth_year")
+    private String birthYear;
+
+    @JsonProperty("gender")
+    private String gender;
+
+    @JsonProperty("homeworld")
+    private String homeworld;
+
+    //@JsonProperty("films")
+    //private List<String> films;
+
+    @JsonProperty("species")
+    private List<String> species;
+
+    @JsonProperty("vehicles")
+    private List<String> vehicles;
+
+    @JsonProperty("starships")
+    private List<String> starships;
+
+    @Transient
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "filmCast")
     private Set<Film> films = new HashSet<>();
@@ -81,11 +143,11 @@ public class Character {
             throw new StarWarsApiUserException("You can only be a ca of valid films! Given film does not exist.");
         }
         if (films.contains(f)) {
-            log.warn("You are already a cast of the film {}", f.getName());
+            log.warn("You are already a cast of the film {}", f.getTitle());
             return;
         }
 
-        log.info("Ok, Character {} is now part of the cast of the Film {}", this.name, f.getName());
+        log.info("Ok, Character {} is now part of the cast of the Film {}", this.name, f.getTitle());
         films.add(f);
     }
 

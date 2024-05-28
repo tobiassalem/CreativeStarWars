@@ -10,7 +10,7 @@ function PlanetList() {
     // axios.get('https://swapi.dev/api/planets')
     axios.get('planets.json')
       .then(response => {
-        console.log('response.data:', response.data);
+        console.log('response.data planets:', response.data);
         setPlanets(response.data.results);
       })
       .catch(error => {

@@ -6,7 +6,8 @@ const Footer = () => {
   return (
     <div className='footer'>
       <div className="footer-content">
-        <p>&copy; 2024 Lucas Arts. All rights reserved.</p>
+        <p>&copy; 1977 - 2024 Lucas Arts. All rights reserved.
+        </p>
         <Link to="/" className="home-link">
           Home
         </Link>

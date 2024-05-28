@@ -1,6 +1,6 @@
-package se.salemcreative.starwars.service;
+package se.salemcreative.starwarsapi.service;
 
-import se.salemcreative.starwars.model.Character;
+import se.salemcreative.starwarsapi.model.Character;
 
 import java.util.List;
 import java.util.Set;

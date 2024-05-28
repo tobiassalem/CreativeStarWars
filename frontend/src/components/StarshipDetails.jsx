@@ -17,6 +17,7 @@ function StarshipDetails() {
   useEffect(() => {
     axios.get(`https://swapi.dev/api/starships/${id}`)
       .then(response => {
+        console.log('response.data starship:', response.data);
         setStarship(response.data);
       })
       .catch(error => {

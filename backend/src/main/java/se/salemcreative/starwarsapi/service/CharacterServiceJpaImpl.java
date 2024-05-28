@@ -1,14 +1,14 @@
-package se.salemcreative.starwars.service;
+package se.salemcreative.starwarsapi.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import se.salemcreative.starwars.exception.StarWarsApiSystemException;
-import se.salemcreative.starwars.exception.StarWarsApiUserException;
-import se.salemcreative.starwars.jpa.CharacterRepo;
-import se.salemcreative.starwars.jpa.FilmRepo;
-import se.salemcreative.starwars.model.Character;
-import se.salemcreative.starwars.model.Film;
+import se.salemcreative.starwarsapi.exception.StarWarsApiSystemException;
+import se.salemcreative.starwarsapi.exception.StarWarsApiUserException;
+import se.salemcreative.starwarsapi.jpa.CharacterRepo;
+import se.salemcreative.starwarsapi.jpa.FilmRepo;
+import se.salemcreative.starwarsapi.model.Character;
+import se.salemcreative.starwarsapi.model.Film;
 
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +50,7 @@ public class CharacterServiceJpaImpl implements CharacterService {
 
     @Override
     public Set<Character> findFilmCast(String filmName) {
-        Optional<Film> byName = filmRepo.findByName(filmName);
+        Optional<Film> byName = filmRepo.findByTitle(filmName);
         if (byName.isEmpty()) {
             throw new StarWarsApiUserException("Film with name " + filmName + " does not exist.");
         }

@@ -10,7 +10,7 @@ function StarshipList() {
     // axios.get('https://swapi.dev/api/starships')
     axios.get('starships.json')
       .then(response => {
-        console.log('response.data:', response.data);
+        console.log('response.data starships:', response.data);
         setStarships(response.data.results);
       })
       .catch(error => {

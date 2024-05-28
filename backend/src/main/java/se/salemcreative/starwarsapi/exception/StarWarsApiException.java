@@ -1,4 +1,4 @@
-package se.salemcreative.starwars.exception;
+package se.salemcreative.starwarsapi.exception;
 
 import org.springframework.lang.Nullable;
 

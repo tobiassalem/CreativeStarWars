@@ -1,6 +1,9 @@
-package se.salemcreative.starwars.model;
+package se.salemcreative.starwarsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +19,23 @@ import java.util.concurrent.atomic.AtomicLong;
 @NoArgsConstructor
 @Entity
 @Slf4j
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "title",
+        "episode_id",
+        "opening_crawl",
+        "director",
+        "producer",
+        "release_date",
+        "characters",
+        "planets",
+        "starships",
+        "vehicles",
+        "species",
+        "created",
+        "edited",
+        "url"
+})
 public class Film {
 
     @Id
@@ -37,14 +57,59 @@ public class Film {
     @Transient
     private final AtomicLong loadCount = new AtomicLong(0);
 
-    private String name;
+    @JsonProperty("title")
+    private String title;
+
+    @JsonProperty("episode_id")
+    private Integer episodeId;
+
+    @JsonProperty("opening_crawl")
+    @Column(columnDefinition="TEXT")
+    private String openingCrawl;
+
+    @JsonProperty("director")
+    private String director;
+
+    @JsonProperty("producer")
+    private String producer;
+
+    @JsonProperty("release_date")
+    private String releaseDate;
+
+    @JsonProperty("characters")
+    private List<String> characters;
+
+    @JsonProperty("planets")
+    private List<String> planets;
+
+    @JsonProperty("starships")
+    private List<String> starships;
+
+    @JsonProperty("vehicles")
+    private List<String> vehicles;
+
+    @JsonProperty("species")
+    private List<String> species;
+
+    @JsonProperty("created")
+    private String created;
+
+    @JsonProperty("edited")
+    private String edited;
+
+    @JsonProperty("url")
+    private String url;
+
+    @Transient
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     private Instant createdAt;
 
     private Instant updatedAt;
 
     public Film(String name) {
-        this.name = name;
+        this.title = name;
     }
 
     /* ================================== [Logic] ================================================================= */
@@ -81,7 +146,7 @@ public class Film {
         this.filmCast.size();
         this.castCount = filmCast.size();
         long newCount = loadCount.incrementAndGet();
-        log.info("LoadCount for {} is now {}, castCount is {}", name, newCount, castCount);
+        log.info("LoadCount for {} is now {}, castCount is {}", title, newCount, castCount);
     }
 
     @Override
@@ -89,19 +154,19 @@ public class Film {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Film other = (Film) o;
-        return name.equals(other.getName());
+        return title.equals(other.getTitle());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(title);
     }
 
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + "{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", filmCastCount= " + filmCast.size() +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +

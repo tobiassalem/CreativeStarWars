@@ -1,10 +1,10 @@
-package se.salemcreative.starwars;
+package se.salemcreative.starwarsapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StarwarsApplicationTests {
+class ApiApplicationTests {
 
 	@Test
 	void contextLoads() {

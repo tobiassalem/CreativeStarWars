@@ -1,11 +1,10 @@
-package se.salemcreative.starwars.jpa;
+package se.salemcreative.starwarsapi.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import se.salemcreative.starwars.model.Character;
-import se.salemcreative.starwars.model.Film;
+import se.salemcreative.starwarsapi.model.Film;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +19,7 @@ import java.util.Optional;
 @Repository
 public interface FilmRepo extends JpaRepository<Film, Long>, JpaSpecificationExecutor<Film> {
 
-    Optional<Film> findByName(@Param("name") String name);
+    Optional<Film> findByTitle(@Param("title") String title);
 
     List<Film> findAllByOrderByCreatedAtDesc();
 

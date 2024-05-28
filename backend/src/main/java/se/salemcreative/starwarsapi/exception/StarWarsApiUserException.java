@@ -1,4 +1,4 @@
-package se.salemcreative.starwars.exception;
+package se.salemcreative.starwarsapi.exception;
 
 /**
  * Exception class for user exceptions in the StarWarsApi.

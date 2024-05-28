@@ -1,7 +1,6 @@
-package se.salemcreative.starwars.service;
+package se.salemcreative.starwarsapi.service;
 
-import se.salemcreative.starwars.model.Character;
-import se.salemcreative.starwars.model.Film;
+import se.salemcreative.starwarsapi.model.Film;
 
 import java.util.List;
 import java.util.Set;
@@ -12,7 +11,7 @@ public interface FilmService {
 
     Film findById(Long id);
 
-    Film findByName(String name);
+    Film findByTitle(String title);
 
     Set<Film> findFilmsWithCharacter(String characterName);
 

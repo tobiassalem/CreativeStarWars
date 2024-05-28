@@ -1,4 +1,4 @@
-package se.salemcreative.starwars.model;
+package se.salemcreative.starwarsapi.model;
 
 import lombok.Value;
 import org.springframework.core.env.Environment;

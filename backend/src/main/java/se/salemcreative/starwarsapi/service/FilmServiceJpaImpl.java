@@ -1,13 +1,13 @@
-package se.salemcreative.starwars.service;
+package se.salemcreative.starwarsapi.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import se.salemcreative.starwars.exception.StarWarsApiSystemException;
-import se.salemcreative.starwars.jpa.FilmRepo;
-import se.salemcreative.starwars.model.Character;
-import se.salemcreative.starwars.model.Film;
+import se.salemcreative.starwarsapi.exception.StarWarsApiSystemException;
+import se.salemcreative.starwarsapi.jpa.FilmRepo;
+import se.salemcreative.starwarsapi.model.Film;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -17,15 +17,16 @@ import java.util.Set;
 public class FilmServiceJpaImpl implements FilmService {
 
     @Autowired
-    FilmRepo filmRepo;
+    FilmRepo repo;
+
     @Override
     public List<Film> findAll() {
-        return filmRepo.findAll();
+        return repo.findAll();
     }
 
     @Override
     public Film findById(Long id) {
-        Optional<Film> byId = filmRepo.findById(id);
+        Optional<Film> byId = repo.findById(id);
         if (byId.isEmpty()) {
             throw new StarWarsApiSystemException("Film with id " + id + " does not exist.");
         }
@@ -34,12 +35,17 @@ public class FilmServiceJpaImpl implements FilmService {
     }
 
     @Override
-    public Film findByName(String name) {
-        return null;
+    public Film findByTitle(String title) {
+        Optional<Film> byTitle = repo.findByTitle(title);
+        if (byTitle.isEmpty()) {
+            throw new StarWarsApiSystemException("Film with title " + title + " does not exist.");
+        }
+
+        return byTitle.get();
     }
 
     @Override
     public Set<Film> findFilmsWithCharacter(String characterName) {
-        return null;
+        return new HashSet<>();
     }
 }

@@ -1,16 +1,17 @@
-package se.salemcreative.starwars.controller;
+package se.salemcreative.starwarsapi.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import se.salemcreative.starwars.service.CharacterService;
-import se.salemcreative.starwars.model.Character;
+import se.salemcreative.starwarsapi.service.CharacterService;
+import se.salemcreative.starwarsapi.model.Character;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/characters")
+@CrossOrigin(origins = "http://localhost:3000")
 @Slf4j
 public class CharacterController {
 

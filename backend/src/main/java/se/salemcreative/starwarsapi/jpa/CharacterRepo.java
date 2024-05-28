@@ -1,13 +1,15 @@
-package se.salemcreative.starwars.jpa;
+package se.salemcreative.starwarsapi.jpa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import se.salemcreative.starwars.model.Character;
+import se.salemcreative.starwarsapi.model.Character;
 
 import java.util.Optional;
 
-
+/**
+ * Repo for our Characters
+ */
 @Repository
 public interface CharacterRepo extends JpaRepository<Character, Long> {
 

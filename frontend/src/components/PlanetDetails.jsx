@@ -17,6 +17,7 @@ function PlanetDetails() {
   useEffect(() => {
     axios.get(`https://swapi.dev/api/planets/${id}`)
       .then(response => {
+        console.log('response.data planet:', response.data);
         setPlanet(response.data);
       })
       .catch(error => {
@@ -48,7 +49,7 @@ function PlanetDetails() {
             <p><span className='dataField'>Gravity:</span> <span className='dataValue'>{getData(planet.gravity)}</span></p>
             <p><span className='dataField'>Terrain:</span> <span className='dataValue'>{getData(planet.terrain)}</span></p>
             <p><span className='dataField'>Surface water:</span> <span className='dataValue'>{getBoolData(planet.surface_water)}</span></p>
-            <p><span className='dataField'>Populate:</span> <span className='dataValue'>{getData(planet.population)}</span></p>
+            <p><span className='dataField'>Population:</span> <span className='dataValue'>{getData(planet.population)}</span></p>
             <p><span className='dataField'>Created:</span> <span className='dataValue'>{planet.created}</span></p>
             <p><span className='dataField'>Updated:</span> <span className='dataValue'>{planet.edited}</span></p>
           </Typography>
