@@ -1,0 +1,88 @@
+/* App.css */
+body {
+  font-family: 'Star Wars', sans-serif;
+  background-color: #999;
+  color: #0D52BD;
+  height: 100%;
+}
+
+.app {
+  background-image: url('galaxy.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  padding: 20px;
+  color: #0D52BD;
+  background-color: #333;
+  background: transparent;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 36px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+ul {
+  list-style-type: circle ;
+  color: #0D52BD;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  color: #79F6FC;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #fff;
+}
+
+h1 {
+  background: transparent;
+}
+
+.quote {
+  font-family: 'Star Jedi', sans-serif;
+  font-style: italic;
+  color: #79F6FC;
+  padding: 10px;
+}
+
+.dataHeader {
+  font-family: 'Star Jedi', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  color: #79F6FC;
+  padding-top: 10px;
+}
+
+.dataField {
+  font-family: 'Star Jedi', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  color: #0D52BD;
+}
+
+.dataValue {
+  font-family: 'Star Jedi', sans-serif;
+  font-style: normal;
+  color: #79F6FC;
+  padding: 10px;
+}
