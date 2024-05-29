@@ -25,7 +25,7 @@ public class FilmServiceJpaImpl implements FilmService {
     }
 
     @Override
-    public Film findById(Long id) {
+    public Film getById(Long id) {
         Optional<Film> byId = repo.findById(id);
         if (byId.isEmpty()) {
             throw new StarWarsApiSystemException("Film with id " + id + " does not exist.");
@@ -35,13 +35,18 @@ public class FilmServiceJpaImpl implements FilmService {
     }
 
     @Override
-    public Film findByTitle(String title) {
+    public Film getByTitle(String title) {
         Optional<Film> byTitle = repo.findByTitle(title);
         if (byTitle.isEmpty()) {
             throw new StarWarsApiSystemException("Film with title " + title + " does not exist.");
         }
 
         return byTitle.get();
+    }
+
+    @Override
+    public List<Film> findByTitle(String title) {
+        return repo.findByTitleContainingIgnoreCase(title);
     }
 
     @Override

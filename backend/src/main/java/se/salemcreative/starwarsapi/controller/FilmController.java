@@ -29,7 +29,13 @@ public class FilmController {
     @ResponseStatus(HttpStatus.OK)
     public Film getById(@PathVariable("id") Long id) {
         log.info("Returning film by id {}", id);
-        return service.findById(id);
+        return service.getById(id);
     }
 
+    @GetMapping("/title/{title}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Film> findByTitle(@PathVariable("title") String title) {
+        log.info("Finding films by title {}", title);
+        return service.findByTitle(title);
+    }
 }

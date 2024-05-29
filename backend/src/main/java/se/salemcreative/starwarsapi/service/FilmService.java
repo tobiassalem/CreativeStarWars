@@ -9,9 +9,11 @@ public interface FilmService {
 
     List<Film> findAll();
 
-    Film findById(Long id);
+    Film getById(Long id);
 
-    Film findByTitle(String title);
+    Film getByTitle(String title);
+
+    List<Film> findByTitle(String title);
 
     Set<Film> findFilmsWithCharacter(String characterName);
 

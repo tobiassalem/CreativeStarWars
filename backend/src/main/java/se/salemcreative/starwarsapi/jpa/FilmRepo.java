@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import se.salemcreative.starwarsapi.model.Character;
 import se.salemcreative.starwarsapi.model.Film;
 
 import java.util.List;
@@ -20,6 +21,8 @@ import java.util.Optional;
 public interface FilmRepo extends JpaRepository<Film, Long>, JpaSpecificationExecutor<Film> {
 
     Optional<Film> findByTitle(@Param("title") String title);
+
+    List<Film> findByTitleContainingIgnoreCase(String message);
 
     List<Film> findAllByOrderByCreatedAtDesc();
 

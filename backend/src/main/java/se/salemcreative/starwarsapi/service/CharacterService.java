@@ -9,9 +9,11 @@ public interface CharacterService {
 
     List<Character> findAll();
 
-    Character findById(Long id);
+    Character getById(Long id);
 
-    Character findByName(String name);
+    Character getByName(String name);
+
+    List<Character> findByName(String name);
 
     Set<Character> findFilmCast(String filmName);
 

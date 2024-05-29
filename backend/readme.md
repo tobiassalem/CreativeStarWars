@@ -8,6 +8,8 @@ This simple API is based on the Star Wars universe and currently supports the fo
 * Get a character by id: `GET /characters/{id}`
 * List all films: `GET /films`
 * Get film by id: `GET /films/{id}`
+* Search characters by name: `GET /characters/name/luke`
+* Search films by title: `GET /films/title/hope`
 
 
 ### Requirements

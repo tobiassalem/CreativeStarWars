@@ -29,7 +29,7 @@ public class CharacterServiceJpaImpl implements CharacterService {
     }
 
     @Override
-    public Character findById(Long id) {
+    public Character getById(Long id) {
         Optional<Character> byId = characterRepo.findById(id);
         if (byId.isEmpty()) {
             throw new StarWarsApiSystemException("Character with id " + id + " does not exist.");
@@ -39,13 +39,18 @@ public class CharacterServiceJpaImpl implements CharacterService {
     }
 
     @Override
-    public Character findByName(String name) {
+    public Character getByName(String name) {
         Optional<Character> byName = characterRepo.findByName(name);
         if (byName.isEmpty()) {
             throw new StarWarsApiUserException("Character with name " + name + " does not exist.");
         }
 
         return byName.get();
+    }
+
+    @Override
+    public List<Character> findByName(String name) {
+        return characterRepo.findByNameContainingIgnoreCase(name);
     }
 
     @Override

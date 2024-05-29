@@ -34,6 +34,6 @@ This simple frontend currently supports the following features:
 
 * Node - @See https://nodejs.org/en
 * NVM - @See https://github.com/nvm-sh/nvm
-* Ract - @See https://react.dev/
+* React - @See https://react.dev/
 * Postman REST client - @See https://www.postman.com/
 * Clean Code by Robert C. Martin - @See https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882
