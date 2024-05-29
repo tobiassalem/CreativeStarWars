@@ -24,7 +24,7 @@
 			"response": []
 		},
 		{
-			"name": "profie",
+			"name": "profile",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -63,12 +63,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/characters",
+					"raw": "{{url}}/characters/1",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"characters"
+						"characters",
+						"1"
 					]
 				}
 			},

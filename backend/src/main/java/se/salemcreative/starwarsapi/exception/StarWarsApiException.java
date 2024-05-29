@@ -22,13 +22,4 @@ public abstract class StarWarsApiException extends RuntimeException {
         super(s, throwable);
     }
 
-    @Nullable
-    public <T extends Exception> T getCause(Class<T> clazz) {
-        for (Throwable e = this; e != null; e = e.getCause()) {
-            if (clazz.isAssignableFrom(e.getClass())) {
-                return (T) e;
-            }
-        }
-        return null;
-    }
 }

@@ -78,8 +78,8 @@ public class Character {
     @JsonProperty("homeworld")
     private String homeworld;
 
-    //@JsonProperty("films")
-    //private List<String> films;
+    @JsonProperty("films")
+    private List<String> films;
 
     @JsonProperty("species")
     private List<String> species;
@@ -95,46 +95,23 @@ public class Character {
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "filmCast")
-    private Set<Film> films = new HashSet<>();
+    private Set<Film> participatingFilms = new HashSet<>();
 
     private Instant createdAt;
 
     private Instant updatedAt;
 
     @Transient
-    private final AtomicLong visitCount = new AtomicLong(0);
+    private final AtomicLong loadCount = new AtomicLong(0);
 
     public Character(String name) {
         this.name = name;
     }
 
-    /* ================================== [Accessors] ============================================================== */
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Film> getFilms() {
-        return films;
-    }
-
-    public void setFilms(Set<Film> films) {
-        this.films = films;
-    }
-
-
     /* ================================== [Logic] ================================================================= */
 
-    public Long getVisitCount() {
-        return visitCount.get();
+    public Long getLoadCount() {
+        return loadCount.get();
     }
 
     public void addFilm(Film f) {
@@ -142,13 +119,13 @@ public class Character {
             log.error("Character {} tried to add himself/herself as cast to a non-existent film!", name);
             throw new StarWarsApiUserException("You can only be a ca of valid films! Given film does not exist.");
         }
-        if (films.contains(f)) {
+        if (participatingFilms.contains(f)) {
             log.warn("You are already a cast of the film {}", f.getTitle());
             return;
         }
 
         log.info("Ok, Character {} is now part of the cast of the Film {}", this.name, f.getTitle());
-        films.add(f);
+        participatingFilms.add(f);
     }
 
     /* ================================== [Helpers] =============================================================== */
@@ -171,9 +148,9 @@ public class Character {
      */
     @PostLoad
     public void initRelations() {
-        this.films.size();
-        long newCount = visitCount.incrementAndGet();
-        log.info("VisitCount for {} is now {}", name, newCount);
+        this.participatingFilms.size();
+        long newCount = loadCount.incrementAndGet();
+        log.info("loadCount for {} is now {}", name, newCount);
     }
 
     @Override
@@ -194,8 +171,8 @@ public class Character {
         return this.getClass().getSimpleName() + "{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", filmCount= " + films.size() +
-                ", visitCount= " + getVisitCount() +
+                ", filmCount= " + participatingFilms.size() +
+                ", visitCount= " + getLoadCount() +
                 '}';
     }
 

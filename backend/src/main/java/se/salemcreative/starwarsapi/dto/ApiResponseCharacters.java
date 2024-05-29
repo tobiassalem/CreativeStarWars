@@ -1,6 +1,5 @@
 package se.salemcreative.starwarsapi.dto;
 
-
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
